@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\LogoutController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
@@ -63,9 +64,17 @@ Route::post("/email/verification-notification", function(Request $request) {
     ])
     ->name("verification.send");
 
-Route::get("/dashboard", function() {
-    return view("dashboard");
-})
+// Route::get("/dashboard", function() {
+//     return view("dashboard");
+// })
+//     ->middleware([
+//         "auth",
+//         "verified" // The user must have verified their account
+//     ])
+//     ->name("dashboard");
+
+// Migrated from Closure to Controller
+Route::get("/dashboard", [BudgetController::class, "index"])
     ->middleware([
         "auth",
         "verified" // The user must have verified their account
