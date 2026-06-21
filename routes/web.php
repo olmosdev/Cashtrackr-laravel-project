@@ -74,10 +74,17 @@ Route::post("/email/verification-notification", function(Request $request) {
 //     ->name("dashboard");
 
 // Migrated from Closure to Controller
-Route::get("/dashboard", [BudgetController::class, "index"])
-    ->middleware([
-        "auth",
-        "verified" // The user must have verified their account
-    ])
-    ->name("dashboard");
+// Route::get("/dashboard", [BudgetController::class, "index"])
+//     ->middleware([
+//         "auth",
+//         "verified" // The user must have verified their account
+//     ])
+//     ->name("dashboard");
+// Route::get("/budgets/create", [BudgetController::class, "create"])->middleware(["auth", "verified"])->name("budgets.create");
+
+Route::middleware(["auth", "verified"])->prefix("dashboard")->group(function() {
+    Route::get("/", [BudgetController::class, "index"])->name("dashboard");
+    Route::get("/budgets/create", [BudgetController::class, "create"])->name("budgets.create");
+    Route::post("/budgets", [BudgetController::class, "store"])->name("budgets.store");
+});
 

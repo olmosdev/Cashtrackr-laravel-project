@@ -41,4 +41,10 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
+
+    // Establishing a User 1:N Budget Relationship
+    public function budgets()
+    {
+        return $this->hasMany(Budget::class);
+    }
 }
