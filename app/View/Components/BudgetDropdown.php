@@ -8,12 +8,14 @@ use Illuminate\View\Component;
 
 class BudgetDropdown extends Component
 {
+    public $budget;
+
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($budget)
     {
-        //
+        $this->budget = $budget;
     }
 
     /**
