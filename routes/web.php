@@ -86,6 +86,7 @@ Route::middleware(["auth", "verified"])->prefix("dashboard")->group(function() {
     Route::get("/", [BudgetController::class, "index"])->name("dashboard");
     Route::get("/budgets/create", [BudgetController::class, "create"])->name("budgets.create");
     Route::post("/budgets", [BudgetController::class, "store"])->name("budgets.store");
+    Route::get("/budgets/{budget}", [BudgetController::class, "show"])->name("budgets.show");
 
     // Route Model Binding
     // To show data in the form
