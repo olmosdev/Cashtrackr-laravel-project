@@ -23,6 +23,12 @@ class Budget extends Model
         return $this->belongsTo(User::class);
     }
 
+    // Establishing a relationship of Budget 1:N Expenses
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
+    }
+
     public function isGeneral() : bool
     {
         return $this->type === BudgetType::General;
