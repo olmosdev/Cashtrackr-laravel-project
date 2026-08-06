@@ -9,6 +9,7 @@
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    @routes {{-- To generate a global object that contains all the routes in our project --}}
     @viteReactRefresh
     <x-inertia::head />
 

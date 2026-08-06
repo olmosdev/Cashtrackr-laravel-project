@@ -37,7 +37,10 @@ class HandleInertiaRequests extends Middleware
     {
         return [
             ...parent::share($request),
-            //
+            "flash" => [
+                // In this way, inertia retrieves the server session messages and it becomes available in the front-end
+                "success" => fn() => $request->session()->get("success"),
+            ]
         ];
     }
 }

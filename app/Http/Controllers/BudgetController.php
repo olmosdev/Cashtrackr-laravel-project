@@ -9,6 +9,7 @@ use Illuminate\Routing\Attributes\Controllers\Authorize;
 use Illuminate\Routing\Attributes\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
+use App\ExpenseCategory;
 
 #[Middleware("auth")]
 #[Middleware("verified")]
@@ -63,8 +64,15 @@ class BudgetController extends Controller
     public function show(Budget $budget)
     {
         // dd("from show");
+        // $categories = collect(ExpenseCategory::cases());
+        // dd($categories);
+
         return Inertia::render("Budgets/Show", [
-            "budget" => $budget
+            "budget" => $budget,
+            "categories" => collect(ExpenseCategory::cases())->map(fn ($category) => [
+                "value" => $category->value,
+                "label" => $category->label(),
+            ]),
         ]);
     }
 
